@@ -5,14 +5,12 @@
 <header id="UHMarkerplaceHeader">
     <h1>Textbooks</h1>
     <p>A place to buy, sell, or trade textbooks</p>
-
+    <h1>Newest to Oldest Posts</h1>
 </header>
 
 <div style="text-align:center">
     {% if textbook_list %}
     <ul>
-        <a href="{% url 'uhmarketplace:orderDate' %}">Ordered from newest to oldest</a> ----
-
         {% for uhmarketplace in textbook_list %}
         <li>
             <h4>{{ uhmarketplace.book_title }}</h4>

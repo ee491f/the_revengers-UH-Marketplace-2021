@@ -46,3 +46,11 @@ class FoodieView(generic.ListView):
 class SuppliesView(generic.ListView):
     template_name = 'uhmarketplace/supplies.html'
     model = Uhmarketplace
+
+class OrderDateView(generic.ListView):
+    template_name = 'uhmarketplace/ordereddate.html'
+    context_object_name = 'textbook_list'
+
+    def get_queryset(self):
+        """Return all the textbooks."""
+        return Textbook.objects.order_by('-created_on')

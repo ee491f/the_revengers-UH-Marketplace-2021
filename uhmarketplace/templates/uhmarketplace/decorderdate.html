@@ -5,24 +5,23 @@
 <header id="UHMarkerplaceHeader">
     <h1>Textbooks</h1>
     <p>A place to buy, sell, or trade textbooks</p>
-    <h3>Newest to Oldest Posts</h3>
+    <h5>Newest to Oldest Posts</h5>
 </header>
 
-<div style="text-align:center">
-    <a href="{% url 'uhmarketplace:createtextbook' %}">Post Your Textbook Here</a>
-    {% if textbook_list %}
+<div >
     <ul>
-        <div>
-            <a href="{% url 'uhmarketplace:ascorderDate' %}">Oldest Posts</a> ----
-            <a href="{% url 'uhmarketplace:myTextbook' %}">My Posts</a> ----
-            <a href="{% url 'uhmarketplace:searchtextbook' %}">Search Textbook</a>
-        </div>
+        <a href="{% url 'uhmarketplace:createtextbook' %}">Post Your Textbook Here</a> ----
+        {% if textbook_list %}
+        <a href="{% url 'uhmarketplace:decorderDate' %}">Newest Posts</a> ----
+        <a href="{% url 'uhmarketplace:ascorderDate' %}">Oldest Posts</a> ----
+        <a href="{% url 'uhmarketplace:myTextbook' %}">My Posts</a> ----
+        <a href="{% url 'uhmarketplace:searchtextbook' %}">Search Textbook</a> 
         <br>
         <br>
         <br>
         {% for uhmarketplace in textbook_list %}
         <li>
-            <h4>{{ uhmarketplace.book_title }}</h4>
+            <h5>{{ uhmarketplace.book_title }}</h5>
             <p><b>Author:</b> {{ uhmarketplace.book_author }}</p>
             <p><b>Course</b>: {{ uhmarketplace.course }}</p>
             <p><b>Comments:</b></p>

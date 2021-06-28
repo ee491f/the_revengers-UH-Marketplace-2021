@@ -12,6 +12,8 @@ urlpatterns = [
     path('classes/', views.ClassesView.as_view(), name='classes'),
     path('foodie/', views.FoodieView.as_view(), name='foodie'),
     path('supplies/', views.SuppliesView.as_view(), name='supplies'),
-    path('orderDate/', views.OrderDateView.as_view(), name='orderDate'),
-
+    path('decorderDate/', views.DecOrderDateView.as_view(), name='decorderDate'),
+    path('ascorderDate/', views.AscOrderDateView.as_view(), name='ascorderDate'),
+    path('searchtextbook/', views.SearchTextbookView.as_view(), name='searchtextbook'),
+    path('myTextbook/', views.FilterCreatedByView.as_view(), name='myTextbook'),
 ]

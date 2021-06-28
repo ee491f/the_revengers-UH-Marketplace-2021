@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<header id="UHMarkerplaceHeader">
+  <h1>Textbooks</h1>
+  <p>A place to buy, sell, or trade textbooks</p>
+  <h3>Search Textbook</h3>
+</header>
+
+<div style="text-align:center">
+  <a href="{% url 'uhmarketplace:createtextbook' %}">Post Your Textbook Here</a>
+  {% if textbook_list %}
+  <ul>
+    <div>
+      <a href="{% url 'uhmarketplace:decorderDate' %}">Newest Posts First</a> ----
+      <a href="{% url 'uhmarketplace:ascorderDate' %}">Oldest Posts First</a> ----
+      <a href="{% url 'uhmarketplace:myTextbook' %}">My Posts</a> 
+    </div>
+    <br>
+    <br>
+    <br>
+    <div>
+      <form method="GET">
+        {{ filter.form }}
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+    </div>
+    {% for uhmarketplace in textbook_list %}
+    <li>
+      <h4>{{ uhmarketplace.book_title }}</h4>
+      <p><b>Author:</b> {{ uhmarketplace.book_author }}</p>
+      <p><b>Course</b>: {{ uhmarketplace.course }}</p>
+      <p><b>Comments:</b></p>
+      <p>{{ uhmarketplace.content}}</p>
+      <h6><b>Published:</b> {{ uhmarketplace.published_date }}</h6>
+      <h6><b>Posted by:</b> {{ uhmarketplace.created_by }}</h6>
+      <span><a href="{% url 'uhmarketplace:updatetextbook' uhmarketplace.id %}">edit</a></span>
+      <span><a href="{% url 'uhmarketplace:deletetextbook' uhmarketplace.id %}">delete</a></span>
+    </li>
+    <br>
+    <br>
+    <br>
+    {% endfor %}
+  </ul>
+  {% else %}
+  <p style="text-align:center">No Posts.</p>
+  {% endif %}
+
+</div>
+
+{%endblock %}

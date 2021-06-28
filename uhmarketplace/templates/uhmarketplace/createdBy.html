@@ -5,23 +5,21 @@
 <header id="UHMarkerplaceHeader">
     <h1>Textbooks</h1>
     <p>A place to buy, sell, or trade textbooks</p>
+    <h3>My Textbooks</h3>
 </header>
-
 
 <div style="text-align:center">
     <a href="{% url 'uhmarketplace:createtextbook' %}">Post Your Textbook Here</a>
     {% if textbook_list %}
     <ul>
         <div>
-            <a href="{% url 'uhmarketplace:decorderDate' %}">Newest Posts</a> ----
             <a href="{% url 'uhmarketplace:ascorderDate' %}">Oldest Posts</a> ----
-            <a href="{% url 'uhmarketplace:myTextbook' %}">My Posts</a> ----
-            <a href="{% url 'uhmarketplace:searchtextbook' %}">Search Textbook</a> 
+            <a href="{% url 'uhmarketplace:decorderDate' %}">Newest Posts</a> ----
+            <a href="{% url 'uhmarketplace:searchtextbook' %}">Search Textbook</a>
         </div>
         <br>
         <br>
         <br>
-
         {% for uhmarketplace in textbook_list %}
         <li>
             <h4>{{ uhmarketplace.book_title }}</h4>
@@ -33,16 +31,15 @@
             <h6><b>Posted by:</b> {{ uhmarketplace.created_by }}</h6>
             <span><a href="{% url 'uhmarketplace:updatetextbook' uhmarketplace.id %}">edit</a></span>
             <span><a href="{% url 'uhmarketplace:deletetextbook' uhmarketplace.id %}">delete</a></span>
-        </li>
-        <br>
-        <br>
-        <br>
-        {% endfor %}
+            </li>
+            <br>
+            <br>
+            <br>
+            {% endfor %}
     </ul>
     {% else %}
     <p style="text-align:center">No Posts.</p>
     {% endif %}
-
 
 </div>
 

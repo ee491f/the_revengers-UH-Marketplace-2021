@@ -1,6 +1,11 @@
 from django.views import generic
 from django.urls import reverse_lazy
 from .models import Textbook, Uhmarketplace
+from django.utils import timezone
+from .filters import TextbookFilter
+from django.contrib.auth.models import User
+from django.shortcuts import render
+from django.urls.base import set_urlconf
 
 class IndexView(generic.ListView):
     template_name = 'uhmarketplace/index.html'
@@ -9,7 +14,7 @@ class IndexView(generic.ListView):
 class CreateView(generic.edit.CreateView):
     template_name = 'uhmarketplace/createtextbook.html'
     model = Textbook
-    fields = ['book_title','book_author','course','content']
+    fields = ['book_title','book_author','course','content', 'created_by']
     success_url = reverse_lazy('uhmarketplace:textbook') # more robust than hardcoding to /uhmarketplace/; directs user to index view after creating a Uhmarketplace
 
 class UpdateView(generic.edit.UpdateView):
@@ -47,10 +52,40 @@ class SuppliesView(generic.ListView):
     template_name = 'uhmarketplace/supplies.html'
     model = Uhmarketplace
 
-class OrderDateView(generic.ListView):
-    template_name = 'uhmarketplace/ordereddate.html'
+class DecOrderDateView(generic.ListView): #decending order (newest to oldest)
+    template_name = 'uhmarketplace/decorderdate.html'
     context_object_name = 'textbook_list'
 
     def get_queryset(self):
         """Return all the textbooks."""
-        return Textbook.objects.order_by('-created_on')
+        return Textbook.objects.order_by('-published_date')
+
+class AscOrderDateView(generic.ListView): #ascending order (oldest to newest)
+    template_name = 'uhmarketplace/ascorderdate.html'
+    context_object_name = 'textbook_list'
+
+    def get_queryset(self):
+        """Return all the textbooks."""
+        return Textbook.objects.order_by(('published_date'))
+
+class SearchTextbookView(generic.ListView):
+    template_name = 'uhmarketplace/searchtextbook.html'
+    context_object_name = 'textbook_list'
+
+    def get_queryset(self):
+        """Return all the textbooks."""
+        return Textbook.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter'] = TextbookFilter(self.request.GET, queryset=self.get_queryset())
+        return context
+
+class FilterCreatedByView(generic.ListView):
+    template_name = 'uhmarketplace/createdBy.html'
+    context_object_name = 'textbook_list'
+
+    def get_queryset(self):
+        """Return all the blogs."""
+        me = User.objects.get(username=self.request.user)
+        return Textbook.objects.filter(created_by=me)

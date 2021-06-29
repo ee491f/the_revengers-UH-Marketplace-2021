@@ -21,3 +21,4 @@ class Textbook(models.Model):
 
     def __str__(self):
         return self.book_title
+

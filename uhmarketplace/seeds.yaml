@@ -1,18 +1,51 @@
---- # basic Uhmarketplaces
-- model: uhmarketplace.Uhmarketplace
-  fields:
-    book_title: Example Book Title
-    book_author: Example Book Author
-    course: Example Course
-    content: Example Content
-    updated_on: 2021-06-23T17:41:28+00:00
-    created_on: 2021-06-23T17:41:28+00:00
+# basic Uhmarketplaces
 
-- model: uhmarketplace.Uhmarketplace
+- model: uhmarketplace.Textbook
   fields:
-    book_title: Example Book Title 2
-    book_author: Example Book Author 2
-    course: Example Course 2
-    content: Example Content 2
-    updated_on: 2021-06-22T17:41:28+00:00
-    created_on: 2021-06-22T17:41:28+00:00
+    book_title: Quantum Physics
+    book_author: Albert Einstein
+    course: PHYS274
+    content: Want to Buy
+    created_date: 2021-06-23T17:41:28+00:00
+    published_date: 2021-06-23T17:41:28+00:00
+    created_by: 1
+
+- model: uhmarketplace.Textbook
+  fields:
+    book_title: Calculus
+    book_author: Gottfried Leibniz
+    course: MATH244
+    content: Want to Sell
+    created_date: 2021-06-22T17:41:28+00:00
+    published_date: 2021-06-22T17:41:28+00:00
+    created_by: 1
+
+- model: uhmarketplace.Textbook
+  fields:
+    book_title: Statics
+    book_author: Benjamin Wright
+    course: CEE270
+    content: Want to Trade for EE213 Book
+    created_date: 2021-07-22T17:41:28+00:00
+    published_date: 2021-07-22T17:41:28+00:00
+    created_by: 1
+
+- model: uhmarketplace.Textbook
+  fields:
+    book_title: Basic Circuits
+    book_author: Nikola Tesla
+    course: EE213
+    content: Free
+    created_date: 2021-07-23T17:41:28+00:00
+    published_date: 2021-07-23T17:41:28+00:00
+    created_by: 1
+
+- model: uhmarketplace.Textbook
+  fields:
+    book_title: Programming
+    book_author: Elon Musk
+    course: EE491F
+    content: Want to Buy
+    created_date: 2021-08-23T17:41:28+00:00
+    published_date: 2021-08-23T17:41:28+00:00
+    created_by: 1

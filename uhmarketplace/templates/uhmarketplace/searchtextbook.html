@@ -1,3 +1,5 @@
+<!-- This section is for filtering textbooks by search -->
+
 {% extends "base.html" %}
 
 {% block content %}
@@ -30,9 +32,10 @@
       <p>{{ uhmarketplace.content}}</p>
       <h6><b>Published:</b> {{ uhmarketplace.published_date }}</h6>
       <h6><b>Posted by:</b> {{ uhmarketplace.created_by }}</h6>
+      {% if user ==  uhmarketplace.created_by %}
       <span><a href="{% url 'uhmarketplace:updatetextbook' uhmarketplace.id %}">edit</a></span>
       <span><a href="{% url 'uhmarketplace:deletetextbook' uhmarketplace.id %}">delete</a></span>
-    </li>
+      {% endif %}    </li>
     <br>
     <br>
     <br>
